@@ -21,8 +21,6 @@ services:
                 build: ./requirements/mariadb/
                 container_name: mariadb
                 image: mariadb
-                enviroment:
-                        MYSQL_DATABASE: wordpress
                 volumes:
                         - ./mariadb-volume:/var/lib/mysql
                 restart: unless-stopped
