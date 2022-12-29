@@ -3,25 +3,43 @@ services:
         nginx:
                 build: ./requirements/nginx/
                 container_name: nginx
-                image: nginx
+                image: nginx:alpine
                 volumes:
-                        - wordpress-volume:var/www/wordpress
+                        - nginx: /etc/nginx/conf.d
+                        - /data/html: /var/www/html
+                ports:
+                        - 8080:80
+                links:
+                        - wordpress
                 restart: unless-stopped
         wordpress:
                 build: ./requirements/wordpress/
                 container_name: wordpress
-                image: wordpress
+                image: wordpress:php7.3-fpm-alpine
                 depends_on:
-                        - mariadb
+                        - mysql
                 volumes:
                         - wordpress-volume:/var/www/wordpress
+                environment:
+                        - WORDPRESS_DB_HOST: ${WORDPRESS_DB_HOST}
+                        - MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+                        - WORDPRESS_DB_NAME: ${WORDPRESS_DB_NAME}
+                        - WORDPRESS_DB_PASSWORD: ${WORDPRESS_DB_PASSWORD}
+                        - WORDPRESS_TABLE_PREFIX: wp_
+                links:
+                        - mysql
                 restart: unless-stopped
-        mariadb:
+        mysql:
                 build: ./requirements/mariadb/
                 container_name: mariadb
                 image: mariadb
                 volumes:
                         - ./mariadb-volume:/var/lib/mysql
+                environment:
+                        - MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+                        - MYSQL_DATABASE: ${MYSQL_DATABASE}
+                        - MYSQL_USER: ${MYSQL_USER}
+                        - MYSQL_PASSWORD: ${MYSQL_PASSWORD}
                 restart: unless-stopped
 networks:
         default:
