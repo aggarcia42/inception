@@ -1,15 +1,14 @@
 version: "3"
 services:
         nginx:
-                build: 
-                        context: ./requirements/nginx
+                build: ./requirements/nginx/
                 container_name: nginx
                 image: nginx
                 volumes:
                         - wordpress-volume:var/www/wordpress
+                restart: unless-stopped
         wordpress:
-                build:
-                        context: ./requirements/nginx
+                build: ./requirements/wordpress/
                 container_name: wordpress
                 image: wordpress
                 depends_on:
@@ -19,8 +18,7 @@ services:
                         - wordpress-volume:/var/www/wordpress
                 restart: unless-stopped
         mariadb:
-                build:
-                        context: ./requirements/mariadb
+                build: ./requirements/mariadb/
                 container_name: mariadb
                 image: mariadb
                 enviroment:
