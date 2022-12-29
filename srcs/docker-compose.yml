@@ -1,9 +1,7 @@
-version: "3.9"
+version: "3.7"
 services:
-        web:
-                build: .
+        website:
+                image: nginx
                 ports:
-                        - "8000:5000"
-                redis:
-                        image: "redis:alpine"
-
+                        - "8081:80"
+                restart: always
