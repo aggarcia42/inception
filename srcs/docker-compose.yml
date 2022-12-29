@@ -1,7 +1,31 @@
 version: "3.7"
 services:
-        website:
+        nginx:
                 image: nginx
                 ports:
                         - "8081:80"
                 restart: always
+        wordpress:
+                image: wordpress
+                ports:
+                        - "8089:80"
+                depends_on:
+                        - mariadb
+                environment:
+                        WORDPRESS_DB_HOST: mariadb
+                        WORDPRESS_DB_USER: root
+                        WORDPRESS_DB_PASSWORD:  " "
+                        WORDPRESS_DB_NAME: wordpress
+                restart: always
+        mariadb:
+                image: "mariadb:5"
+                enviroment:
+                        MARIADB_DATABASE: wordpress
+                volumes:
+                        - ./mariadb:/var/lib/mariadb
+networks:
+        webpage:
+        ipam:
+                driver: default
+                config:
+                        - subnet: "10.200.223.223/24"
