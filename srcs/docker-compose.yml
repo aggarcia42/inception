@@ -1,31 +1,48 @@
 version: "3"
 services:
         nginx:
+                build: 
+                        context: ./requirements/nginx
+                container_name: nginx
                 image: nginx
-                ports:
-                        - "8081:80"
-                restart: always
+                volumes:
+                        - wordpress-volume:var/www/wordpress
         wordpress:
+                build:
+                        context: ./requirements/nginx
+                container_name: wordpress
                 image: wordpress
-                ports:
-                        - "8089:80"
                 depends_on:
-                        - mysql
+                        - mariadb
                 environment:
-                        WORDPRESS_DB_HOST: mysql
-                        WORDPRESS_DB_USER: root
-                        WORDPRESS_DB_PASSWORD:  " "
-                        WORDPRESS_DB_NAME: wordpress
-                restart: always
-        mysql:
-                image: "mysql:5.7"
+                volumes:
+                        - wordpress-volume:/var/www/wordpress
+                restart: unless-stopped
+        mariadb:
+                build:
+                        context: ./requirements/mariadb
+                container_name: mariadb
+                image: mariadb
                 enviroment:
                         MYSQL_DATABASE: wordpress
                 volumes:
-                        - ./mysql:/var/lib/mysql
+                        - ./mariadb-volume:/var/lib/mysql
+                restart: unless-stopped
 networks:
-        webpage:
-        ipam:
-                driver: default
-                config:
-                        - subnet: "10.200.223.223/24"
+        default:
+                external:
+                        name: inet
+
+volumes:
+        mariadb-volume:
+                driver: local
+                driver_opts:
+                        type: none
+                        device: ${MARIADB_HOST_VOLUME_PATH}
+                        o: bind
+        wordpress-volume:
+                driver: local
+                driver_opts:
+                        type: none
+                        device: ${WORDPRESS_HOST_VOLUME_PATH}
+                        o: bind
