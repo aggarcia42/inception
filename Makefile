@@ -1,20 +1,28 @@
 all: build up
 
-build: docker-compose -f ./srcs/docker-compose.yml build
+build: 
+	docker-compose -f ./srcs/docker-compose.yml build
 
-up: docker-compose -f ./srcs/docker-compose.yml up -d
+up:
+	docker-compose -f ./srcs/docker-compose.yml up -d
 
-down: docker-compose -f ./srcs/docker-compose.yml down
+down:
+	docker-compose -f ./srcs/docker-compose.yml down
 
-start: docker-compose -f ./srcs/docker-compose.yml start
+start:
+	docker-compose -f ./srcs/docker-compose.yml start
 
-stop: docker-compose -f ./srcs/docker-compose.yml stop
+stop:
+	docker-compose -f ./srcs/docker-compose.yml stop
 
-logs: docker-compose -f ./srcs/docker-compose.yml logs
+logs:
+	docker-compose -f ./srcs/docker-compose.yml logs
 
-status: docker ps
+status:
+	docker ps
 
-rmi: docker rmi srcs_wordpress srcs_mariadb srcs_nginx srcs_ftp-server srcs_redis
+rmi:
+	docker rmi srcs_wordpress srcs_mariadb srcs_nginx srcs_ftp-server srcs_redis
 
 prune: down
 	sudo rm -rf srcs/data
