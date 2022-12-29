@@ -13,7 +13,6 @@ services:
                 image: wordpress
                 depends_on:
                         - mariadb
-                environment:
                 volumes:
                         - wordpress-volume:/var/www/wordpress
                 restart: unless-stopped
