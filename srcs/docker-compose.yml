@@ -32,6 +32,7 @@ services:
     - WORPRESS_DB_NAME = ${WORPRESS_DB_NAME}
   networks:
     - mynetwork
+
  mariadb:
   build:
     context: ./requirements/mariadb/
