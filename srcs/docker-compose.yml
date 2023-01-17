@@ -1,62 +1,37 @@
 version: "3"
 services:
  nginx:
-  build: ./requirements/nginx/
-  container_name: nginx
-  image: nginx:alpine
-  volumes:
-   - nginx: /etc/nginx/conf.d
-   - /data/html: /var/www/html
+  build:
+    context: ./requirements/nginx/
+    container_name: nginx
+    dockerfile: nginx.Dockerfile
   ports:
-   - 8080:80
-  links:
-   - wordpress
+    - 80:80
+    - 443:443
   restart: unless-stopped
  wordpress:
-  build: ./requirements/wordpress/
-  container_name: wordpress
-  image: wordpress:php7.3-fpm-alpine
-  depends_on:
-   - mysql
+  build:
+    context: ./requirements/wordpress/
+    container_name: wordpress
+    dockerfile: wordpress.Dockerfile
+    restart: unless-stopped
+ mariadb:
+  build:
+    context: ./requirements/mariadb/
+    container_name: mariadb
   volumes:
-   - wordpress-volume:/var/www/wordpress
-  environment:
-   - WORDPRESS_DB_HOST: ${WORDPRESS_DB_HOST}
-   - MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-   - WORDPRESS_DB_NAME: ${WORDPRESS_DB_NAME}
-   - WORDPRESS_DB_PASSWORD: ${WORDPRESS_DB_PASSWORD}
-   - WORDPRESS_TABLE_PREFIX: wp_
-  links:
-   - mysql
+    - ./mariadb-data:/var/lib/mysql
+  enviroment:
+      MYSQL_ROOT_PASSWORD = "password"
   restart: unless-stopped
- mysql:
-  build: ./requirements/mariadb/
-  container_name: mariadb
-  image: mariadb
-  volumes:
-   - ./mariadb-volume:/var/lib/mysql
-  environment:
-   - MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-   - MYSQL_DATABASE: ${MYSQL_DATABASE}
-   - MYSQL_USER: ${MYSQL_USER}
-   - MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-  restart: unless-stopped
+
+
+
+volumes:
+    wordpress-files:
+    mariadb-data:
 
 networks:
  default:
   external:
-   name: inet
-
-volumes:
- mariadb-volume:
-  driver: local
-  driver_opts:
-   type: none
-   device: ${MARIADB_HOST_VOLUME_PATH}
-   o: bind
- wordpress-volume:
-  driver: local
-  driver_opts:
-   type: none
-   device: ${WORDPRESS_HOST_VOLUME_PATH}
-   o: bind
+   name: mynetwork
