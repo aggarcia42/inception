@@ -1,3 +1,13 @@
-FROM Debian:Buster
-RUN apt-get update
-RUN apt-get install mariadb-server
+FROM Alpine:latest
+
+RUN apk update && apk add mariadb mariadb-client
+
+COPY ./conf/my.cnf /etc/mysql/my.cnf
+
+COPY  init.sql /docker-entrypoint-initdb.d/init.sql
+
+RUN chown -R mysql:mysql  /var/lib/mysql
+
+EXPOSE 3306
+
+CMD ["mysqld"]
