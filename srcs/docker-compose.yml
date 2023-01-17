@@ -7,7 +7,7 @@ services:
   ports:
     - 80:80
     - 443:443
-  env-file: 
+  env_file: 
     - ./.env
   restart: unless-stopped
   environment:
@@ -24,7 +24,7 @@ services:
     - mariadb
   volumes:
     - "./wordpress-files:/var/www/html"
-  env-file: 
+  env_file: 
     - ./.env
   restart: unless-stopped
   environment:
@@ -45,7 +45,7 @@ services:
     - MYSQL_DATABASE = ${MYSQL_DATABASE}
     - MYSQL_USER = ${MYSQL_USER}
     - MYSQL_PASSWORD = ${MYSQL_PASSWORD}
-  env-file: 
+  env_file: 
     - ./.env
   restart: unless-stopped
   networks:
