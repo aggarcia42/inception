@@ -7,7 +7,8 @@ services:
   ports:
     - 80:80
     - 443:443
-  env-file: "./.env"
+  env-file: 
+    - ./.env
   restart: unless-stopped
   environment:
     - SSL_CERT = ${CERTS_}
@@ -23,7 +24,8 @@ services:
     - mariadb
   volumes:
     - "./wordpress-files:/var/www/html"
-  env-file: "./.env"
+  env-file: 
+    - ./.env
   restart: unless-stopped
   environment:
     - WORPRESS_DB_HOST = mariadb
@@ -43,7 +45,8 @@ services:
     - MYSQL_DATABASE = ${MYSQL_DATABASE}
     - MYSQL_USER = ${MYSQL_USER}
     - MYSQL_PASSWORD = ${MYSQL_PASSWORD}
-  env-file: "./.env"
+  env-file: 
+    - ./.env
   restart: unless-stopped
   networks:
     - mynetwork
