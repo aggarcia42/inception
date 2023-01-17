@@ -21,7 +21,7 @@ services:
   depends_on:
     - mariadb
   volumes:
-    - ./wordpress-files: /var/www/html
+    - ./wordpress-files: "/var/www/html"
   restart: unless-stopped
   environment:
     - WORPRESS_DB_HOST = mariadb
@@ -35,7 +35,7 @@ services:
   build:
     context: ./requirements/mariadb/
   volumes:
-    - ./mariadb-data: /var/lib/mysql
+    - ./mariadb-data: "/var/lib/mysql"
   environment:
     - MYSQL_ROOT_PASSWORD = ${MYSQL_ROOT_PASSWORD}
     - MYSQL_DATABASE = ${MYSQL_DATABASE}
