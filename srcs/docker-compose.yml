@@ -3,13 +3,12 @@ services:
  nginx:
   build:
     context: ./requirements/nginx/
-    container_name: nginx
     dockerfile: nginx.Dockerfile
   ports:
     - 80:80
     - 443:443
   restart: unless-stopped
-  enviroment:
+  environment:
     - SSL_CERT = ${CERTS_}
     - SSL_KEY = ${SSL_KEY} 
   networks:
@@ -18,14 +17,13 @@ services:
  wordpress:
   build:
     context: ./requirements/wordpress/
-    container_name: wordpress
     dockerfile: wordpress.Dockerfile
   depends_on:
     - mariadb
   volumes:
     - wordpress-files: /var/www/html
   restart: unless-stopped
-  enviroment:
+  environment:
     - WORPRESS_DB_HOST = mariadb
     - WORPRESS_DB_USER = ${WORPRESS_DB_USER}
     - WORPRESS_DB_PASSWORD = ${WORPRESS_DB_PASSWORD}
@@ -36,10 +34,9 @@ services:
  mariadb:
   build:
     context: ./requirements/mariadb/
-    container_name: mariadb
   volumes:
     - ./mariadb-data:/var/lib/mysql
-  enviroment:
+  environment:
       MYSQL_ROOT_PASSWORD = ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE = ${MYSQL_DATABASE}
       MYSQL_USER = ${MYSQL_USER}
