@@ -4,15 +4,19 @@ YELLOW=\033[0;33m
 BLUE=\033[0;34m
 NO_COLOR=\033[0m
 
+start_time = $(shell date +%s)
+
 all: build up
 
 build: 
 	@echo "$(BLUE)Building images...$(NO_COLOR)"
-	docker-compose -f ./srcs/docker-compose.yml --env-file srcs/.env build
+	docker-compose -f ./srcs/docker-compose.yml --env-file srcs/.env build --quiet
 
 up:
 	@echo "$(GREEN)Starting containers...$(NO_COLOR)"
-	docker-compose -f ./srcs/docker-compose.yml --env-file srcs/.env up -d
+	docker-compose -f ./srcs/docker-compose.yml --env-file srcs/.env up -d --quiet
+	@echo "$(GREEN)Elapsed time: $(shell date +%s -d @$(shell echo $$(date +%s)-$(start_time) | bc)) seconds $(NO_COLOR)"
+
 
 down:
 	@echo "$(YELLOW)Stopping containers...$(NO_COLOR)"
