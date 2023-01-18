@@ -1,4 +1,4 @@
-FROM Alpine:latest
+FROM alpine:latest
 
 RUN apk update && apk add mariadb mariadb-client
 

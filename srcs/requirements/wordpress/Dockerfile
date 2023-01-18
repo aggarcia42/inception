@@ -1,4 +1,4 @@
-FROM Alpine:latest
+FROM alpine:latest
 RUN apk update && apk add php7-fpm php7-mysqli php7-mbstring php7-json
 
 RUN mkdir /var/www/wordpress
