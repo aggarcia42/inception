@@ -1,16 +1,21 @@
 FROM debian:buster
-RUN apt-get update && apt-get install php7-fpm php7-mysqli php7-mbstring php7-json -y
 
-RUN mkdir /var/www/wordpress
+# Update package repositories and install necessary packages
+RUN apt-get update && apt-get install -y wget curl nano gnupg2
 
-WORKDIR /var/www/wordpress
+# Install PHP and extensions
+RUN apt-get install -y php-fpm php-mysql php-mbstring php-json
 
-RUN wget https://wordpress.org/latest.tar.gz && tar -zxvf latest.tar.gz && rm latest.tar.gz
+# Install and configure WordPress
+RUN wget https://wordpress.org/latest.tar.gz -O /tmp/latest.tar.gz
+RUN tar -xvf /tmp/latest.tar.gz -C /var/www/
+RUN rm -f /tmp/latest.tar.gz
+RUN mv /var/www/wordpress /var/www/html
+COPY conf/wp-config.php /var/www/html/wp-config.php
+RUN chown -R www-data:www-data /var/www/html
 
-COPY ./conf/wp-config.php /var/www/wordpress/wordpress/wp-config.php
-
-RUN chown -R nobody:nobody /var/www/wordpress
-
+# Expose PHP-FPM port
 EXPOSE 9000
 
-CMD ["php7-fpm7", "F"]
+# Start PHP-FPM
+CMD ["php-fpm"]
