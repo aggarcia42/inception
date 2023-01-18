@@ -1,6 +1,6 @@
-FROM alpine:latest
+FROM debian:buster
 
-RUN apk update && apk add mariadb mariadb-client
+RUN apt update && apt install mariadb mariadb-client
 
 COPY ./conf/my.cnf /etc/mysql/my.cnf
 

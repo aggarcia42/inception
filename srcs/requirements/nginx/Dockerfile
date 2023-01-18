@@ -1,6 +1,6 @@
-FROM alpine:latest
+FROM debian:buster
 
-RUN apk update && apk add nginx openssl
+RUN apt update && apt install nginx openssl
 
 #Since the cert is fake the domain doesnt matter
 RUN openssl req -x509 -nodes -newkey rsa:4096 -keyout /etc/ssl/private/ssl-cert.key -out /etc/ssl/certs/ssl-cert.pem -days 365 -subj "/C=ES/ST=Madrid/L=Madrid/O=42/CN=intra.42.fr"

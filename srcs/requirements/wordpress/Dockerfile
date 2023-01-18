@@ -1,5 +1,5 @@
-FROM alpine:latest
-RUN apk update && apk add php8-fpm php8-mysqli php8-mbstring php8-json
+FROM debian:buster
+RUN apt update && apt install php7-fpm php7-mysqli php7-mbstring php7-json
 
 RUN mkdir /var/www/wordpress
 
