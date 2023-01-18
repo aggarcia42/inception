@@ -1,6 +1,6 @@
 FROM debian:buster
 
-RUN apt-get update && apt-get install mariadb mariadb-client
+RUN apt-get update && apt-get install mariadb mariadb-client -y
 
 COPY ./conf/my.cnf /etc/mysql/my.cnf
 

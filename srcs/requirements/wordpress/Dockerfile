@@ -1,5 +1,5 @@
 FROM debian:buster
-RUN apt-get update && apt-get install php7-fpm php7-mysqli php7-mbstring php7-json
+RUN apt-get update && apt-get install php7-fpm php7-mysqli php7-mbstring php7-json -y
 
 RUN mkdir /var/www/wordpress
 
