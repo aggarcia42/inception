@@ -8,6 +8,7 @@ RUN apt-get install -y php-fpm php-mysql php-mbstring php-json
 
 # Install and configure WordPress
 RUN wget https://wordpress.org/latest.tar.gz -O /tmp/latest.tar.gz
+RUN mkdir -p /var/www/
 RUN tar -xvf /tmp/latest.tar.gz -C /var/www/
 RUN rm -f /tmp/latest.tar.gz
 RUN mv /var/www/wordpress /var/www/html
