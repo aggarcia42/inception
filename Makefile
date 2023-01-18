@@ -7,13 +7,13 @@ NO_COLOR=\033[0m
 
 all: build up
 
-build:
+build: 
 	@echo "$(BLUE)Building images...$(NO_COLOR)"
-	docker-compose -f ./srcs/docker-compose.yml --env-file srcs/.env build | pv -l -s $(shell docker-compose -f ./srcs/docker-compose.yml --env-file srcs/.env config --services | wc -l) > /dev/null
+	docker-compose -f ./srcs/docker-compose.yml --env-file srcs/.env build
 
 up:
 	@echo "$(GREEN)Starting containers...$(NO_COLOR)"
-	docker-compose -f ./srcs/docker-compose.yml --env-file srcs/.env up -d | pv -l -s $(shell docker-compose -f ./srcs/docker-compose.yml --env-file srcs/.env config --services | wc -l) > /dev/null
+	docker-compose -f ./srcs/docker-compose.yml --env-file srcs/.env up -d
 
 down:
 	@echo "$(YELLOW)Stopping containers...$(NO_COLOR)"
