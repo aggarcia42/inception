@@ -8,45 +8,45 @@ all: build up
 
 build: 
 	@echo "$(BLUE)Building images...$(NO_COLOR)"
-	docker-compose -f ./srcs/docker-compose.yml build
+	docker-compose -f ./srcs/docker-compose.yml --env-file srcs/.env build
 
 up:
 	@echo "$(GREEN)Starting containers...$(NO_COLOR)"
-	docker-compose -f ./srcs/docker-compose.yml up -d
+	docker-compose -f ./srcs/docker-compose.yml --env-file srcs/.env up -d
 
 down:
 	@echo "$(YELLOW)Stopping containers...$(NO_COLOR)"
-	docker-compose -f ./srcs/docker-compose.yml down
+	docker-compose -f ./srcs/docker-compose.yml --env-file srcs/.env down
 
 start:
 	@echo "$(GREEN)Starting containers...$(NO_COLOR)"
-	docker-compose -f ./srcs/docker-compose.yml start
+	docker-compose -f ./srcs/docker-compose.yml --env-file srcs/.env start
 
 stop:
 	@echo "$(YELLOW)Stopping containers...$(NO_COLOR)"
-	docker-compose -f ./srcs/docker-compose.yml stop
+	docker-compose -f ./srcs/docker-compose.yml --env-file srcs/.env stop
 
 logs:
-	@echo "$(BLUE)Building images...$(NO_COLOR)"
-	docker-compose -f ./srcs/docker-compose.yml logs
+	@echo "$(BLUE)Building logs...$(NO_COLOR)"
+	docker-compose -f ./srcs/docker-compose.yml --env-file srcs/.env logs
 
 status:
 	docker ps
 
 exec_mariadb:
 	@echo "$(GREEN)Accessing mariadb container...$(NO_COLOR)"
-	docker-compose exec mariadb bash
+	docker-compose --env-file srcs/.env exec mariadb bash
 
 exec_nginx:
 	@echo "$(GREEN)Accessing nginx container...$(NO_COLOR)"
-	docker-compose exec nginx bash
+	docker-compose --env-file srcs/.env exec nginx bash
 
 exec_wordpress:
 	@echo "$(GREEN)Accessing wordpress container...$(NO_COLOR)"
-	docker-compose exec wordpress bash
+	docker-compose --env-file srcs/.env exec wordpress bash
 
 clean:
-	-docker-compose -f ./srcs/docker-compose.yml down -v --rmi  all
+	-docker-compose -f ./srcs/docker-compose.yml --env-file srcs/.env down -v --rmi  all
 	-docker system prune -f
 
 re: clean all
