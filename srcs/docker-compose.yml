@@ -3,7 +3,7 @@ services:
  nginx:
   build:
     context: ./requirements/nginx/
-    dockerfile: ./requirements/nginx/Dockerfile
+    dockerfile: Dockerfile
   ports:
     - 80:80
     - 443:443
@@ -19,7 +19,7 @@ services:
  wordpress:
   build:
     context: ./requirements/wordpress/
-    dockerfile: ./requirements/wordpress/Dockerfile
+    dockerfile: Dockerfile
   depends_on:
     - mariadb
   volumes:
@@ -38,7 +38,7 @@ services:
  mariadb:
   build:
     context: ./requirements/mariadb/
-    dockerfile: ./requirements/mariadb/Dockerfile
+    dockerfile: Dockerfile
   volumes:
     - "./mariadb-data:/var/lib/mysql"
   environment:
