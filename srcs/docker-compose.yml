@@ -11,8 +11,8 @@ services:
     - .env
   restart: unless-stopped
   environment:
-    - SSL_CERT: ${CERTS_}
-    - SSL_KEY: ${SSL_KEY} 
+    - SSL_CERT = ${CERTS_}
+    - SSL_KEY = ${SSL_KEY} 
   networks:
     - mynetwork
   
