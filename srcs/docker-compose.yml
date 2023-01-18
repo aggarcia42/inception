@@ -28,10 +28,10 @@ services:
     - .env
   restart: unless-stopped
   environment:
-    - WORPRESS_DB_HOST: mariadb
-    - WORPRESS_DB_USER: ${WORPRESS_DB_USER}
-    - WORPRESS_DB_PASSWORD: ${WORPRESS_DB_PASSWORD}
-    - WORPRESS_DB_NAME:  ${WORPRESS_DB_NAME}
+    - WORPRESS_DB_HOST = mariadb
+    - WORPRESS_DB_USER = ${WORPRESS_DB_USER}
+    - WORPRESS_DB_PASSWORD = ${WORPRESS_DB_PASSWORD}
+    - WORPRESS_DB_NAME = ${WORPRESS_DB_NAME}
   networks:
     - mynetwork
 
@@ -41,10 +41,10 @@ services:
   volumes:
     - "./mariadb-data:/var/lib/mysql"
   environment:
-    - MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-    - MYSQL_DATABASE: ${MYSQL_DATABASE}
-    - MYSQL_USER: ${MYSQL_USER}
-    - MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    - MYSQL_ROOT_PASSWORD = ${MYSQL_ROOT_PASSWORD}
+    - MYSQL_DATABASE = ${MYSQL_DATABASE}
+    - MYSQL_USER = ${MYSQL_USER}
+    - MYSQL_PASSWORD = ${MYSQL_PASSWORD}
   env_file: 
     - .env
   restart: unless-stopped
