@@ -9,6 +9,7 @@ services:
     - 443:443
   env_file: 
     - .env
+  name: "nginx"
   restart: unless-stopped
   environment:
     - SSL_CERT= ${CERTS_}
@@ -26,6 +27,7 @@ services:
     - "./wordpress-files:/var/www/html"
   env_file: 
     - .env
+  name: "wordpress"
   restart: unless-stopped
   environment:
     - WORPRESS_DB_HOST= mariadb
@@ -48,6 +50,7 @@ services:
     - MYSQL_PASSWORD= ${MYSQL_PASSWORD}
   env_file: 
     - .env
+  name: "mariadb"
   restart: unless-stopped
   networks:
     - mynetwork
