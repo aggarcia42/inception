@@ -4,12 +4,12 @@ services:
   build:
     context: ./requirements/nginx/
     dockerfile: Dockerfile
+    name: "nginx"
   ports:
     - 80:80
     - 443:443
   env_file: 
     - .env
-  name: "nginx"
   restart: unless-stopped
   environment:
     - SSL_CERT= ${CERTS_}
@@ -21,13 +21,13 @@ services:
   build:
     context: ./requirements/wordpress/
     dockerfile: Dockerfile
+    name: "wordpress"
   depends_on:
     - mariadb
   volumes:
     - "./wordpress-files:/var/www/html"
   env_file: 
     - .env
-  name: "wordpress"
   restart: unless-stopped
   environment:
     - WORPRESS_DB_HOST= mariadb
@@ -41,6 +41,7 @@ services:
   build:
     context: ./requirements/mariadb/
     dockerfile: Dockerfile
+    name: "mariadb"
   volumes:
     - "./mariadb-data:/var/lib/mysql"
   environment:
@@ -50,7 +51,6 @@ services:
     - MYSQL_PASSWORD= ${MYSQL_PASSWORD}
   env_file: 
     - .env
-  name: "mariadb"
   restart: unless-stopped
   networks:
     - mynetwork
