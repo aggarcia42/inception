@@ -2,7 +2,7 @@ FROM debian:buster
 
 # Update package repositories and install necessary packages
 # Install PHP and extensions
-RUN apt-get update && apt-get install -y wget curl nano gnupg2 php-fpm php-mysql php-mbstring php-json
+RUN apt-get update && apt-get install -y wget curl nano gnupg2 php7.3 php-mysqli php-fpm php-mbstring php-json
 
 # Install and configure WordPress
 ENV PATH /usr/sbin:$PATH
@@ -17,4 +17,5 @@ RUN chown -R www-data:www-data /var/www/html
 EXPOSE 9000
 
 # Start PHP-FPM
-CMD ["/usr/sbin/php-fpm","-F"]
+CMD ["/usr/sbin/php-fpm7.3","-nodaemonize"]
+
