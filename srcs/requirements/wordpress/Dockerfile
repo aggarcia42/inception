@@ -7,6 +7,7 @@ RUN apt-get update && apt-get install -y wget curl nano gnupg2
 RUN apt-get install -y php-fpm php-mysql php-mbstring php-json
 
 # Install and configure WordPress
+ENV PATH /usr/local/php/sbin:$PATH
 RUN wget https://wordpress.org/latest.tar.gz -O /tmp/latest.tar.gz
 RUN mkdir -p /var/www/
 RUN tar -xvf /tmp/latest.tar.gz -C /var/www/
