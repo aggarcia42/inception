@@ -36,15 +36,15 @@ status:
 
 exec_mariadb:
 	@echo "$(GREEN)Accessing mariadb container...$(NO_COLOR)"
-	docker-compose --env-file srcs/.env exec mariadb bash
+	docker-compose -f ./srcs/docker-compose.yml --env-file srcs/.env exec mariadb bash
 
 exec_nginx:
 	@echo "$(GREEN)Accessing nginx container...$(NO_COLOR)"
-	docker-compose --env-file srcs/.env exec nginx bash
+	docker-compose -f ./srcs/docker-compose.yml --env-file srcs/.env exec nginx bash
 
 exec_wordpress:
 	@echo "$(GREEN)Accessing wordpress container...$(NO_COLOR)"
-	docker-compose --env-file srcs/.env exec wordpress bash
+	docker-compose -f ./srcs/docker-compose.yml --env-file srcs/.env exec wordpress bash
 
 clean:
 	-docker-compose -f ./srcs/docker-compose.yml --env-file srcs/.env down -v --rmi  all
