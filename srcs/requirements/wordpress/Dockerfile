@@ -12,6 +12,7 @@ RUN tar -xvf /tmp/latest.tar.gz -C /var/www/html
 RUN rm -f /tmp/latest.tar.gz
 COPY conf/wp-config.php /var/www/html/wp-config.php
 RUN chown -R www-data:www-data /var/www/html
+RUN core download --allow-root
 
 # Expose PHP-FPM port
 EXPOSE 9000
