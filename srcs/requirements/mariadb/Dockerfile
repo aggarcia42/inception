@@ -3,7 +3,7 @@ FROM debian:buster
 RUN apt-get update && apt-get install mariadb-server -y
 
 COPY ./conf/my.cnf /etc/mysql/mariadb.conf.d/
-COPY  ./conf/init.sql /var/www/
+COPY  ./tools /var/www/
 
 EXPOSE 3306
 
