@@ -7,6 +7,6 @@ COPY  ./tools /var/www/
 
 EXPOSE 3306
 
-RUN service mysql start && mysql << /var/www/init.sql
+RUN service mysql start && mysql << /var/www/init.sql;
 
 CMD ["mysqld"]
