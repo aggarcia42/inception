@@ -4,7 +4,7 @@
  */
 
 /** The name of the database for WordPress */
-define('DB_NAME', 'Base');
+define('DB_NAME', 'mariadb');
 
 /** MySQL database username */
 define('DB_USER', 'test');
