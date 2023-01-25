@@ -38,15 +38,15 @@ define('WP_REDIS_DATABASE', 0);
  * You can generate these using the {@link https://api.wordpress.org/secret-key/1.1/salt/ WordPress.org secret-key service}
  */
 
-define('AUTH_KEY',         'qvQz(eqh}5~;S5TR#R:T&C?V;`9^SKZj.Z^]z?i`mhO?E-g0jA(3|T:<q?uBK#36');
-define('SECURE_AUTH_KEY',  'I]Lar9Kn_+|>6Yn>QuxXX~~H<vwZW=J!|_O06B-b_-M_{iPd^`S~O#rL8[k#_3Qx');
-define('LOGGED_IN_KEY',    'B,,slhS>=QaZ4a,[$3d}w@3G>t=-rVn|af;e^Y1N)|P De0]PJ-AoG6I]Oa;`}hA');
-define('NONCE_KEY',        '$-1g>/*G+^W3NusCW3<+li GS%jG#emQ_c!kpUd@`hvLt@9Mr2,<2E)+@sFT@&_f');
-define('AUTH_SALT',        'G(cJz*p)_fBbi:}Sb&gF+Kx{#w-MVHM?J.>jm.H=l)L~dqFaQ|-AN3/-/M DD@pg');
-define('SECURE_AUTH_SALT', '6&W-;`Q4wz{m|o`Az/ZS9:~f5H0*45C[w95U[S|N+v%39`x~l};fSjlY4C[Ept2G');
-define('LOGGED_IN_SALT',   '+qr-6C[G>uB=+>uWrU>XsV} fEosQvMNPoVED==+QW]}C{J [:p-ko%&@Et_!b$@');
-define('NONCE_SALT',       'Q!G2)qR(Gdzy(7>m,+M+]Geac%R9+VAIW0EoslA+C)<> w=d9`pygGtn4+.U~?1=');
-
+define('AUTH_KEY',         'EDhtbI=w;P2:e3Q35X=[Q;.Vu[]KwUyDbd.y+jgm@Y4UL ,~`Dx#<w[jvW[hn,^?');
+define('SECURE_AUTH_KEY',  'O^JxG+]- 2_,Y:DRu`;S8F]2<{QD=CAqNP(L>*:5t;K|9+[8M<Xci?(~*_ {IJfU');
+define('LOGGED_IN_KEY',    '&JVNLj%@7t nC8#Te8t?QQH>dpomkfoVeq@Z=sdnHMj*5a6%F^I_i(<fHqIXO/D}');
+define('NONCE_KEY',        'yi56pp%5/A+u[e:woSh+^.J@:$S/c9{wEL:]#9J9l`kP:nL!1sB.P=(&jBbei84B');
+define('AUTH_SALT',        'B|hej9R+#5K#]qKE6X-sOfWp;!v!U*[(*@T#t?[cxW^z-#>{boxy-nS0G,7<)3+T');
+define('SECURE_AUTH_SALT', '<E|hBCd>lz9$ R}`y)Z~SL-%E{SIM,!An:|D_R:|*LFuSj/<a&Md++$~6#;.1zU-');
+define('LOGGED_IN_SALT',   '<y-t&q33@*nQH2%!-%[-5OV@|_K;|WzD&[1#K3W Ii@-eeF-ThsxGa{]D+-uzi9Q');
+define('NONCE_SALT',       '|||MHa9s{iH #v?[]h9q{?J+5Hm$pf ~]N*i.E4WVRg|gxR+_fe-Dh!RD39$vm_Z');
+	
 /** WordPress Database Table prefix. */
 $table_prefix = 'wp_';
 
