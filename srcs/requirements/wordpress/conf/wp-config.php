@@ -7,10 +7,10 @@
 define('DB_NAME', 'Base');
 
 /** MySQL database username */
-define('DB_USER', 'bca');
+define('DB_USER', 'test');
 
 /** MySQL database password */
-define('DB_PASSWORD', '1qaz');
+define('DB_PASSWORD', 'prueba');
 
 /** MySQL hostname */
 define('DB_HOST', 'mariadb');
@@ -23,11 +23,8 @@ define('DB_COLLATE', '');
 
 //** Redis cache settings. */
 define('WP_CACHE', true);
-define('WP_CACHE_KEY_SALT', 'bcaffere.42.fr');
+define('WP_CACHE_KEY_SALT', 'aggarcia.42.fr');
 
-//** Try Redis container */
-define('WP_REDIS_HOST', 'redis');
-define('WP_REDIS_PORT', 6379);
 // define( 'WP_REDIS_PASSWORD', '$REDIS_PWD' );
 define('WP_REDIS_TIMEOUT', 1);
 define('WP_REDIS_READ_TIMEOUT', 1);
@@ -46,7 +43,7 @@ define('AUTH_SALT',        'B|hej9R+#5K#]qKE6X-sOfWp;!v!U*[(*@T#t?[cxW^z-#>{boxy
 define('SECURE_AUTH_SALT', '<E|hBCd>lz9$ R}`y)Z~SL-%E{SIM,!An:|D_R:|*LFuSj/<a&Md++$~6#;.1zU-');
 define('LOGGED_IN_SALT',   '<y-t&q33@*nQH2%!-%[-5OV@|_K;|WzD&[1#K3W Ii@-eeF-ThsxGa{]D+-uzi9Q');
 define('NONCE_SALT',       '|||MHa9s{iH #v?[]h9q{?J+5Hm$pf ~]N*i.E4WVRg|gxR+_fe-Dh!RD39$vm_Z');
-	
+
 /** WordPress Database Table prefix. */
 $table_prefix = 'wp_';
 
