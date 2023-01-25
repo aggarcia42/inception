@@ -17,5 +17,5 @@ RUN chown -R www-data:www-data /var/www/html
 EXPOSE 9000
 
 # Start PHP-FPM
-CMD ["/usr/sbin/php-fpm7.3","-nodaemonize"]
+CMD ["/usr/sbin/php-fpm7.3","-F"]
 
