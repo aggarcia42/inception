@@ -3,12 +3,14 @@ GREEN=\033[0;32m
 YELLOW=\033[0;33m
 BLUE=\033[0;34m
 NO_COLOR=\033[0m
-
+HOME_DIR := $(shell echo $$HOME)
 
 all: build up
 
 build: 
 	@echo "$(BLUE)Building images...$(NO_COLOR)"
+	mkdir -p $(HOME_DIR)/data/mariadb
+	mkdir -p $(HOME_DIR)/data/wordpress
 	docker-compose -f ./srcs/docker-compose.yml --env-file srcs/.env build
 
 up:
