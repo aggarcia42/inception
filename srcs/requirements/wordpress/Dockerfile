@@ -8,6 +8,7 @@ RUN apt-get update && apt-get install -y wget curl nano gnupg2 php7.3 php-mysqli
 ENV PATH /usr/sbin:$PATH
 RUN wget https://wordpress.org/latest.tar.gz -O /tmp/latest.tar.gz
 RUN mkdir -p /var/www/html
+RUN mkdir -p $HOME/data/wordpress
 RUN tar -xvf /tmp/latest.tar.gz -C /var/www/html
 RUN rm -f /tmp/latest.tar.gz
 RUN mkdir /run/php
