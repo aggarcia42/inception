@@ -46,20 +46,20 @@ services:
     restart: unless-stopped
 
 volumes:
-        wordpress-files:
-            name: wordpress
-            driver: local
-            driver_opts:
-                type: none
-                device: $HOME/data/wordpress
-                o: bind
-        mariadb-data:
-            name: mariadb
-            driver: local
-            driver_opts:
-                type: none
-                device: $HOME/data/mysql
-                o: bind
+    wordpress-files:
+        name: wordpress
+        driver: local
+        driver_opts:
+            type: none
+            device: $HOME/data/wordpress
+            o: bind
+    mariadb-data:
+        name: mariadb
+        driver: local
+        driver_opts:
+            type: none
+            device: $HOME/data/mysql
+            o: bind
 
 networks:
     mynetwork:
