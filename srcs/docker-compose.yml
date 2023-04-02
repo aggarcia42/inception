@@ -10,7 +10,7 @@ services:
     - 443:443
   env_file: 
     - .env
-  #restart: unless-stopped
+  restart: unless-stopped
   environment:
     - SSL_CERT= ${CERTS_}
     - SSL_KEY= ${SSL_KEY} 
@@ -28,7 +28,7 @@ services:
     - "$HOME/data/wordpress-files:/var/www/html"
   env_file: 
     - .env
-  #restart: unless-stopped
+  restart: unless-stopped
   environment:
     - WORPRESS_DB_HOST= mariadb
     - WORPRESS_DB_USER= ${WORPRESS_DB_USER}
@@ -51,7 +51,7 @@ services:
     - MYSQL_PASSWORD= ${MYSQL_PASSWORD}
   env_file: 
     - .env
-  #restart: unless-stopped
+  restart: unless-stopped
   networks:
     - mynetwork
 
