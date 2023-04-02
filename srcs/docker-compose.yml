@@ -2,14 +2,16 @@ version: "3"
 
 volumes:
     wordpress-files:
-        name: wordpress
+        name: 
+        - wordpress
         driver: local
         driver_opts:
             type: none
             device: $HOME/data/wordpress
             o: bind
     mariadb-data:
-        name: mariadb
+        name:
+        - mariadb
         driver: local
         driver_opts:
             type: none
@@ -18,7 +20,8 @@ volumes:
 
 networks:
     mynetwork:
-        name: inception
+        name:
+        - inception
 
 services:
  nginx:
