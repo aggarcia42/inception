@@ -6,17 +6,17 @@ services:
     context: ./requirements/nginx/
     dockerfile: Dockerfile
   ports:
-    - 80:80
     - 443:443
   env_file: 
     - .env
-  restart: unless-stopped
-  environment:
-    - SSL_CERT= ${CERTS_}
-    - SSL_KEY= ${SSL_KEY} 
   networks:
     - mynetwork
-  
+  depends_on:
+    - wordpress
+  volumes:
+    - wordpress-files:/var/www/html
+  restart: unless-stopped
+
  wordpress:
   container_name: wordpress
   build:
@@ -25,17 +25,12 @@ services:
   depends_on:
     - mariadb
   volumes:
-    - "$HOME/data/wordpress-files:/var/www/html"
+    - wordpress-files:/var/www/html
   env_file: 
     - .env
-  restart: unless-stopped
-  environment:
-    - WORPRESS_DB_HOST= mariadb
-    - WORPRESS_DB_USER= ${WORPRESS_DB_USER}
-    - WORPRESS_DB_PASSWORD= ${WORPRESS_DB_PASSWORD}
-    - WORPRESS_DB_NAME= ${WORPRESS_DB_NAME}
   networks:
     - mynetwork
+  restart: unless-stopped
 
  mariadb:
   container_name: mariadb
@@ -43,22 +38,29 @@ services:
     context: ./requirements/mariadb/
     dockerfile: Dockerfile
   volumes:
-    - "$HOME/data/mariadb-data:/var/lib/mysql"
-  environment:
-    - MYSQL_ROOT_PASSWORD= ${MYSQL_ROOT_PASSWORD}
-    - MYSQL_DATABASE= ${MYSQL_DATABASE}
-    - MYSQL_USER= ${MYSQL_USER}
-    - MYSQL_PASSWORD= ${MYSQL_PASSWORD}
+    - mariadb-data:/var/lib/mysql
   env_file: 
     - .env
-  restart: unless-stopped
   networks:
     - mynetwork
-
+  restart: unless-stopped
 
 volumes:
     wordpress-files:
+      name: wordpress
+      driver: local
+      driver_opts:
+        type: none
+        device: $HOME/data/wordpress
+        o: bind
     mariadb-data:
+      name: mariadb
+      driver: local
+      driver_opts:
+        type: none
+        device: $HOME/data/mysql
+        o: bind
 
 networks:
  mynetwork:
+  name: inception
