@@ -63,4 +63,4 @@ volumes:
 
 networks:
     mynetwork:
-        name: inception
+        name: "inception"
