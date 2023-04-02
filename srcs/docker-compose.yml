@@ -16,8 +16,6 @@ volumes:
 
 networks:
     mynetwork:
-        name:
-        - inception
 
 services:
  nginx:
