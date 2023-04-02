@@ -1,4 +1,25 @@
 version: "3"
+
+volumes:
+    wordpress-files:
+        name: wordpress
+        driver: local
+        driver_opts:
+            type: none
+            device: $HOME/data/wordpress
+            o: bind
+    mariadb-data:
+        name: mariadb
+        driver: local
+        driver_opts:
+            type: none
+            device: $HOME/data/mysql
+            o: bind
+
+networks:
+    mynetwork:
+        name: inception
+
 services:
  nginx:
     container_name: nginx
@@ -48,22 +69,3 @@ services:
         - mynetwork
     restart: unless-stopped
 
-volumes:
-    wordpress-files:
-        name: wordpress
-        driver: local
-        driver_opts:
-            type: none
-            device: $HOME/data/wordpress
-            o: bind
-    mariadb-data:
-        name: mariadb
-        driver: local
-        driver_opts:
-            type: none
-            device: $HOME/data/mysql
-            o: bind
-
-networks:
-    mynetwork:
-        name: inception
