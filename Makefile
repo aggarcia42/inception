@@ -9,6 +9,8 @@ all: build up
 
 build: 
 	@echo "$(BLUE)Building images...$(NO_COLOR)"
+	mkdir -p $HOME/data/wordpress
+	mkdir -p $HOME/data/mysql
 	docker-compose -f ./srcs/docker-compose.yml --env-file srcs/.env build
 
 up:
