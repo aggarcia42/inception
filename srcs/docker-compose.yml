@@ -11,7 +11,7 @@ volumes:
         driver: local
         driver_opts:
             type: none
-            device: $HOME/data/mysql
+            device: $HOME/data/mariadb
             o: bind
 
 networks:
