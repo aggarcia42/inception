@@ -4,6 +4,9 @@ RUN apt-get update && apt-get install mariadb-server -y
 
 COPY ./conf/my.cnf /etc/mysql/mariadb.conf.d/
 #COPY  ./tools /var/www/
+ARG WORDPRESS_DB_NAME
+ARG WORDPRESS_DB_PASSWORD
+ARG WORDPRESS_DB_NAME
 
 RUN echo "CREATE DATABASE IF NOT EXISTS $WORDPRESS_DB_NAME;"
 RUN echo "CREATE USER IF NOT EXISTS '${WORDPRESS_DB_USER}' IDENTIFIED BY ${WORDPRESS_DB_PASSWORD};"
