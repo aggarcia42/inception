@@ -11,42 +11,42 @@ build:
 	@echo "$(BLUE)Building images...$(NO_COLOR)"
 	mkdir -p $(HOME_DIR)/data/mariadb
 	mkdir -p $(HOME_DIR)/data/wordpress
-	docker-compose ./srcs/docker-compose.yml --env-file srcs/.env build
+	docker-compose -f ./srcs/docker-compose.yml --env-file srcs/.env build
 
 up:
 	@echo "$(GREEN)Starting containers...$(NO_COLOR)"
-	docker-compose ./srcs/docker-compose.yml --env-file srcs/.env up -d
+	docker-compose -f ./srcs/docker-compose.yml --env-file srcs/.env up -d
 
 down:
 	@echo "$(YELLOW)Stopping containers...$(NO_COLOR)"
-	docker-compose ./srcs/docker-compose.yml --env-file srcs/.env down
+	docker-compose -f ./srcs/docker-compose.yml --env-file srcs/.env down
 
 start:
 	@echo "$(GREEN)Starting containers...$(NO_COLOR)"
-	docker-compose ./srcs/docker-compose.yml --env-file srcs/.env start
+	docker-compose -f ./srcs/docker-compose.yml --env-file srcs/.env start
 
 stop:
 	@echo "$(YELLOW)Stopping containers...$(NO_COLOR)"
-	docker-compose ./srcs/docker-compose.yml --env-file srcs/.env stop
+	docker-compose -f ./srcs/docker-compose.yml --env-file srcs/.env stop
 
 logs:
 	@echo "$(BLUE)Building logs...$(NO_COLOR)"
-	docker-compose ./srcs/docker-compose.yml --env-file srcs/.env logs
+	docker-compose -f ./srcs/docker-compose.yml --env-file srcs/.env logs
 
 status:
 	docker ps
 
 exec_mariadb:
 	@echo "$(GREEN)Accessing mariadb container...$(NO_COLOR)"
-	docker-compose ./srcs/docker-compose.yml --env-file srcs/.env exec mariadb bash
+	docker-compose -f ./srcs/docker-compose.yml --env-file srcs/.env exec mariadb bash
 
 exec_nginx:
 	@echo "$(GREEN)Accessing nginx container...$(NO_COLOR)"
-	docker-compose ./srcs/docker-compose.yml --env-file srcs/.env exec nginx bash
+	docker-compose -f ./srcs/docker-compose.yml --env-file srcs/.env exec nginx bash
 
 exec_wordpress:
 	@echo "$(GREEN)Accessing wordpress container...$(NO_COLOR)"
-	docker-compose ./srcs/docker-compose.yml --env-file srcs/.env exec wordpress bash
+	docker-compose -f ./srcs/docker-compose.yml --env-file srcs/.env exec wordpress bash
 
 clean:
 	-docker-compose -f ./srcs/docker-compose.yml --env-file srcs/.env down -v --rmi  all
