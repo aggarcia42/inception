@@ -6,6 +6,6 @@ RUN openssl req -x509 -nodes -newkey rsa:4096 -keyout /etc/ssl/private/ssl-cert.
 
 COPY ./conf/nginx.conf /etc/nginx/sites-enabled/nginx.conf
 
-EXPOSE 443
+# EXPOSE 443
 
 CMD ["nginx", "-g", "daemon off;"]

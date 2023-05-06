@@ -16,7 +16,7 @@ COPY conf/www.conf /etc/php7.3/php-fpm.d/www.conf
 RUN chown -R www-data:www-data /var/www/html
 
 # Expose PHP-FPM port
-EXPOSE 9000
+# EXPOSE 9000
 
 # Start PHP-FPM
 CMD ["/usr/sbin/php-fpm7.3","-F"]
