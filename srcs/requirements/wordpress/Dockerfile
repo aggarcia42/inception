@@ -11,7 +11,7 @@ RUN mkdir -p /var/www/html
 RUN tar -xvf /tmp/latest.tar.gz -C /var/www/html
 RUN rm -f /tmp/latest.tar.gz
 RUN mkdir /run/php
-COPY conf/wp-config.php /var/www/html/wp-config.php
+COPY conf/wp-config.php /var/www/html/wordpress/wp-config.php
 COPY conf/www.conf /etc/php7.3/php-fpm.d/www.conf
 RUN chown -R www-data:www-data /var/www/html
 
