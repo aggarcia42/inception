@@ -58,8 +58,8 @@ services:
         context: ./requirements/mariadb/
         dockerfile: Dockerfile
         args:
-            WORDPRESS_DB_USER: ${WORDPRESS_DB_USER}
-            WORDPRESS_DB_PASSWORD: ${WORDPRESS_DB_PASSWORD}
+            WORDPRESS_DB_USER: $WORDPRESS_DB_USER
+            WORDPRESS_DB_PASSWORD: $WORDPRESS_DB_PASSWORD
             WORDPRESS_DB_NAME: $WORDPRESS_DB_NAME
     image: mariadb
     volumes:
