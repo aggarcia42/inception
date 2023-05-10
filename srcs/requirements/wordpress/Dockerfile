@@ -1,23 +1,23 @@
 FROM debian:buster
 
+RUN mkdir -p /run/php
 # Update package repositories and install necessary packages
 # Install PHP and extensions
 RUN apt-get update && apt-get install -y wget curl nano gnupg2 php7.3 php-mysqli php-fpm php-mbstring php-json
 
-# Install and configure WordPress
-ENV PATH /usr/sbin:$PATH
-RUN wget https://wordpress.org/latest.tar.gz -O /tmp/latest.tar.gz
-RUN mkdir -p /var/www/html
-RUN tar -xvf /tmp/latest.tar.gz -C /var/www/html
-RUN rm -f /tmp/latest.tar.gz
-RUN mkdir /run/php
-COPY conf/wp-config.php /var/www/html/wordpress/wp-config.php
-COPY conf/www.conf /etc/php7.3/php-fpm.d/www.conf
-RUN chown -R www-data:www-data /var/www/html
 
-# Expose PHP-FPM port
-# EXPOSE 9000
+# Install and configure WordPress
+COPY /conf/www.conf /etc/php/7.3/fpm/pool.d
+
+RUN https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && chmod +x wp-cli.phar && mv wp-cli.phar /usr/local/bin/wp
+
+RUN mkdir /var/www/html/wordpress
+RUN cd var/www/html/wordpress
+RUN wp core download --allow-root
+RUN wp config create --dbname=$WORDPRESS_DB_NAME --dbuser=$WORDPRESS_DB_USER --dbpass=$WORDPRESS_DB_PASSWORD --dbhost=mariadb --allow-root
+RUN wp core install --url=$DOMAIN_NAME --title=Inception --admin_user=$WORDPRESS_DB_USER --admin_password=$WORDPRESS_DB_PASSWORD --admin_email=test@test.com --allow-root
+RUN wp theme install inspiro --activate --allow-root
 
 # Start PHP-FPM
-CMD ["/usr/sbin/php-fpm7.3","-F"]
+CMD ["/usr/sbin/php-fpm7.3","--nodaemonize"]
 
