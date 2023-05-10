@@ -15,7 +15,7 @@ RUN /bin/bash -c '\
         mkdir -p /var/www/html/wordpress && \
         cd var/www/html/wordpress && \
         wp core download --allow-root && \
-        wp config create --dbname=$WORDPRESS_DB_NAME --dbuser=$WORDPRESS_DB_USER --dbpass=$WORDPRESS_DB_PASSWORD --dbhost=0.0.0.0 --allow-root && \
+        wp config create --dbname=$WORDPRESS_DB_NAME --dbuser=$WORDPRESS_DB_USER --dbpass=$WORDPRESS_DB_PASSWORD --dbhost=wordpress --allow-root && \
         wp core install --url=$DOMAIN_NAME --title=Inception --admin_user=$WORDPRESS_DB_USER --admin_password=$WORDPRESS_DB_PASSWORD --admin_email=test@test.com --allow-root \
         wp theme install inspiro --activate --allow-root; \
     fi && \
