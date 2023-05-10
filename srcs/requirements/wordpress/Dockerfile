@@ -13,7 +13,7 @@ RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.ph
 
 RUN /bin/bash -c '\
     if [ ! -d "/var/www/html/wordpress" ]; then \
-        mkdir /var/www/html/wordpress && \
+        mkdir -p /var/www/html/wordpress && \
         cd var/www/html/wordpress && \
         wp core download --allow-root && \
         wp config create --dbname=$WORDPRESS_DB_NAME --dbuser=$WORDPRESS_DB_USER --dbpass=$WORDPRESS_DB_PASSWORD --dbhost=mariadb --allow-root && \
