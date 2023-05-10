@@ -34,9 +34,10 @@ services:
         - wordpress
     volumes:
         - wordpress-files:/var/www/html
-    restart: unless-stopped
+    restart: always
 
  wordpress:
+    tty: true
     container_name: wordpress
     build:
         context: ./requirements/wordpress/
@@ -50,7 +51,7 @@ services:
         - .env
     networks:
         - mynetwork
-    restart: unless-stopped
+    restart: always
 
  mariadb:
     container_name: mariadb
@@ -68,5 +69,5 @@ services:
         - .env
     networks:
         - mynetwork
-    restart: unless-stopped
+    restart: always
 
