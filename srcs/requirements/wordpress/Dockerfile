@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -y wget curl nano gnupg2 php7.3 php-mysqli
 # Install and configure WordPress
 COPY /conf/www.conf /etc/php/7.3/fpm/pool.d
 
-RUN https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && chmod +x wp-cli.phar && mv wp-cli.phar /usr/local/bin/wp
+RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && chmod +x wp-cli.phar && mv wp-cli.phar /usr/local/bin/wp
 
 RUN mkdir /var/www/html/wordpress
 RUN cd var/www/html/wordpress
