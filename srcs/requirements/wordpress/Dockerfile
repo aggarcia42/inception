@@ -3,8 +3,7 @@ FROM debian:buster
 RUN mkdir -p /run/php
 # Update package repositories and install necessary packages
 # Install PHP and extensions
-RUN apt-get update && apt-get install -y wget curl nano gnupg2 php7.3 php-mysqli php-fpm php-mbstring php-json
-
+RUN apt-get update && apt-get install -y wget php7.3 php7.3-mysqli php7.3-fpm mariadb-client
 
 # Install and configure WordPress
 COPY /conf/www.conf /etc/php/7.3/fpm/pool.d
