@@ -3,6 +3,7 @@
 if [ ! -d "/var/www/html/wordpress" ]
 then
         mkdir -p /var/www/html/wordpress
+        chown -R www-data:www-data /var/www/html/wordpress
         cd var/www/html/wordpress
         wp core download --allow-root
         wp config create --dbname=$MYSQL_DATABASE --dbuser=$MYSQL_USER --dbpass=$MYSQL_PASSWORD --dbhost=mariadb --allow-root
