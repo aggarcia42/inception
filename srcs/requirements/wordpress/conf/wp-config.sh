@@ -1,6 +1,7 @@
 #!/bin/bash
 
-if [ ! -d "/var/www/html/wordpress" ]; then \
+if [ ! -d "/var/www/html/wordpress" ]
+then
         mkdir -p /var/www/html/wordpress
         cd var/www/html/wordpress
         wp core download --allow-root
