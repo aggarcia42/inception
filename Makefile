@@ -50,7 +50,7 @@ exec_wordpress:
 
 clean:
 	-docker-compose -f ./srcs/docker-compose.yml --env-file srcs/.env down -v --rmi  all
-	-docker system prune -f
+	-docker system prune -af
 
 re: clean all
 
